@@ -22,3 +22,8 @@
   * use concurrency, and the easiest way is to use parallel stream
   * if the csv is extremely large(10GiB+), then use an api maybe not a good idea, should upload the csv to the file system, and use file processing engine such as Spark to handle it
 
+# Unit Tests
+* test a product id can be replaced by name
+* test a line with invalid date format is discarded and logged error
+* test a csv file can be enriched
+* test a large csv file can be enriched in 5 seconds
