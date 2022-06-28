@@ -8,6 +8,7 @@ import org.springframework.context.event.EventListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -17,18 +18,17 @@ import static com.junpeng.csvapi.service.CsvEnrichService.PRODUCT_ID_TO_NAME;
 @SpringBootApplication
 public class CsvApiApplication {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         SpringApplication.run(CsvApiApplication.class, args);
     }
 
     /**
      * load the static product csv to memory
-     * @throws FileNotFoundException
      */
     @EventListener(ApplicationReadyEvent.class)
-    public void loadProduct() throws FileNotFoundException {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("product.csv");
-        Scanner sc = new Scanner(new File(url.getFile()));
+    public void loadProduct() {
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("product.csv");
+        Scanner sc = new Scanner(inputStream);
         //parsing a CSV file into the constructor of Scanner class
         sc.useDelimiter("\n");
         //setting comma as delimiter pattern
