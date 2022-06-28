@@ -58,8 +58,8 @@ public class CsvEnrichService {
         if (line.length != 4) {
             return "data length is incorrect, should be 4, but got " + line.length;
         }
-        if (isDateFormatValid(line[0], "YYYYMMDD")) {
-            return "date format is incorrect, should be YYYYMMDD, but got " + line[0];
+        if (!isDateFormatValid(line[0], "yyyyMMdd")) {
+            return "date format is incorrect, should be yyyyMMdd, but got " + line[0];
         }
         return "";
     }
